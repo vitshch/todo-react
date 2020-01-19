@@ -1,68 +1,112 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+##Todo App
 
-## Available Scripts
+###ReactJs
+###JSX
+You can pass arrays into JSX code.
+You can pass all props of object via spread operator
+```javascript
+<TodoListItem {...item}/>
+```
+####Props
+Props object passes to every component
+You can pass any object that you want in props
+```javascript
+const Comp = (props) => {
+    return (<i>{ props.name }</i>);
+}
+```
+####Components
+- Functional components
 
-In the project directory, you can run:
+For stateless components
+```javascript
+const AppHeader = ({todo, done}) => {
+    return (
+        <div className="app-header d-flex">
+            <h1>Todo List</h1>
+            <h2>{todo} more to do, {done} done</h2>
+        </div>
+    );
+};
+```
+- Class components
 
-### `npm start`
+For stateful components
+```javascript
+class AppHeader extends Component {
+    render() {
+        return (
+            <div className="app-header d-flex">
+                <h1>Todo List</h1>
+                <h2>{this.props.todo} more to do, {this.props.done} done</h2>
+            </div>
+        );
+    }
+}
+```
+- Classes extends React.Component
+- Method render() returns react element
+- props property accessible via this.props
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+####Event Handling
+onClick, onBlur... all event props should be named in camelCase
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Should pass function
+```javascript
+onClick={ this.onLabelClick }
+```
 
-### `npm test`
+####State
+State inits in class constructor
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+State must be immutable after initialization
 
-### `npm run build`
+There is a method to change state: setState(newState)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+You need to pass only state changes into setState
+```javascript
+this.setState({
+    done: true
+});
+```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+setState can work asynchronosly
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+You can pass function into setState to update state
+```javascript
+this.setState((state) => {
+    return {
+        important: !state.important
+    }
+});
+```
+If new state do not relies on old state it's ok to use set state directly
 
-### `npm run eject`
+If nes state depends on old state, you need to pass function in setState
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Do not change state!!! Use a copy
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+####Form
+Action on form should be handled by onSubmit event
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+e.preventDefault();
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+####Controlled component
+Element on a form that has value property and it's controlled by component
 
-## Learn More
+```javascript
+<input
+    type="text"
+    className="form-control"
+    onChange={this.onLabelChange}
+    value={this.state.label}
+    placeholder="What needs to be done?"
+/>
+```
+####Reconciliation
+key prop used to compare virtualDOM and realDOM
+by default React set number ordered key(1,2,3)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+###Webpack
+Webpack searches index.js file in component directory, if directory specified in import.
+It is useful to have separate component directory with component js, css and index.js file for useful imports.
