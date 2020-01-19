@@ -1,13 +1,15 @@
-##Todo App
+## Todo App
 
-###ReactJs
-###JSX
+### ReactJs
+
+### JSX
 You can pass arrays into JSX code.
 You can pass all props of object via spread operator
 ```javascript
 <TodoListItem {...item}/>
 ```
-####Props
+#### Props
+
 Props object passes to every component
 You can pass any object that you want in props
 ```javascript
@@ -15,7 +17,8 @@ const Comp = (props) => {
     return (<i>{ props.name }</i>);
 }
 ```
-####Components
+#### Components
+
 - Functional components
 
 For stateless components
@@ -48,7 +51,8 @@ class AppHeader extends Component {
 - Method render() returns react element
 - props property accessible via this.props
 
-####Event Handling
+#### Event Handling
+
 onClick, onBlur... all event props should be named in camelCase
 
 Should pass function
@@ -56,7 +60,8 @@ Should pass function
 onClick={ this.onLabelClick }
 ```
 
-####State
+#### State
+
 State inits in class constructor
 
 State must be immutable after initialization
@@ -86,12 +91,14 @@ If nes state depends on old state, you need to pass function in setState
 
 Do not change state!!! Use a copy
 
-####Form
+#### Form
+
 Action on form should be handled by onSubmit event
 
 e.preventDefault();
 
-####Controlled component
+#### Controlled component
+
 Element on a form that has value property and it's controlled by component
 
 ```javascript
@@ -103,10 +110,12 @@ Element on a form that has value property and it's controlled by component
     placeholder="What needs to be done?"
 />
 ```
-####Reconciliation
+#### Reconciliation
+
 key prop used to compare virtualDOM and realDOM
 by default React set number ordered key(1,2,3)
 
-###Webpack
+### Webpack
+
 Webpack searches index.js file in component directory, if directory specified in import.
 It is useful to have separate component directory with component js, css and index.js file for useful imports.
